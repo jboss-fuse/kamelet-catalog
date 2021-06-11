@@ -48,6 +48,7 @@
         <maven-assembly-plugin.version>3.1.1</maven-assembly-plugin.version>
         <maven-source-plugin.version>3.1.0</maven-source-plugin.version>
         <maven-checksum-maven-plugin.version>1.7</maven-checksum-maven-plugin.version>
+        <maven-replacer-plugin.version>1.5.3</maven-replacer-plugin.version>
 
         <camel.version>3.10.0.fuse-800005</camel.version>
         <log4j.version>2.13.3</log4j.version>
@@ -251,21 +252,32 @@
         </pluginManagement>
         <plugins>
             <plugin>
-                <artifactId>maven-antrun-plugin</artifactId>
-                <version>3.0.0</version>
-                <inherited>false</inherited>
-                <executions>
+                <groupId>com.google.code.maven-replacer-plugin</groupId>
+                <artifactId>replacer</artifactId>
+                <version>${maven-replacer-plugin.version}</version>
+    	        <executions>
                     <execution>
-                        <phase>process-resources</phase>
+                        <phase>generate-resources</phase>
                         <goals>
-                            <goal>run</goal>
+                            <goal>replace</goal>
                         </goals>
                         <configuration>
-                            <target>
-                                <ant antfile="update-kamelets.xml">
-                                    <target name="update.kamelets" />
-                                </ant>
-                            </target>
+                            <filesToInclude>${basedir}/*.kamelet.yaml</filesToInclude>
+                            <regex>true</regex>
+                            <replacements>
+                                <replacement>
+                                    <token>camel.apache.org/catalog.version:.*</token>
+                                    <value>camel.apache.org/catalog.version: &quot;${project.version}&quot;</value>
+                                </replacement>
+                                <replacement>
+                                    <token>github:openshift-integration.kamelet-catalog:camel-kamelets-utils:[A-Za-z0-9-.]+</token>
+                                    <value>mvn:org.apache.camel.kamelets:camel-kamelets-utils:${project.version}</value>
+                                </replacement>
+                                <replacement>
+                                    <token>mvn:org.apache.camel.kamelets:camel-kamelets-utils:[A-Za-z0-9-.]+</token>
+                                    <value>github:openshift-integration.kamelet-catalog:camel-kamelets-utils:${project.version}</value>
+                                </replacement>
+                            </replacements>
                         </configuration>
                     </execution>
                 </executions>
