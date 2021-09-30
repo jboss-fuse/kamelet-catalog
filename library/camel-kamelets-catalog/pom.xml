@@ -24,7 +24,7 @@
     <parent>
         <groupId>org.apache.camel.kamelets</groupId>
         <artifactId>camel-kamelets-parent</artifactId>
-        <version>master-SNAPSHOT</version>
+        <version>1.0.0.fuse-800028</version>
         <relativePath>../../pom.xml</relativePath>
     </parent>
 
