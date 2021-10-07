@@ -29,7 +29,7 @@
     <groupId>org.apache.camel.kamelets</groupId>
     <artifactId>camel-kamelets-parent</artifactId>
     <packaging>pom</packaging>
-    <version>master-SNAPSHOT</version>
+    <version>1.0.0.fuse-800035</version>
     <name>Camel Kamelets Parent</name>
     <description>Camel Kamelets Library Parent</description>
 
@@ -50,7 +50,7 @@
         <maven-source-plugin.version>3.1.0</maven-source-plugin.version>
         <maven-checksum-maven-plugin.version>1.7</maven-checksum-maven-plugin.version>
 
-        <camel.version>3.10.0</camel.version>
+        <camel.version>3.11.1.fuse-800012</camel.version>
         <log4j.version>2.13.3</log4j.version>
         <jackson.version>2.11.4</jackson.version>
         <camel.k.extension.version>5.3.1</camel.k.extension.version>
